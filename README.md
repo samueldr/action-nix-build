@@ -21,7 +21,7 @@ keep the action "always up to date" even on new NixOS releases.
 To configure another channel, set `NIX_PATH` accordingly
 
 ```
- action "samueldr/action-nix-build@master" {
+action "samueldr/action-nix-build@master" {
   uses = "samueldr/action-nix-build@master"
   env = {
     NIX_PATH = "nixpkgs=channel:nixos-18.09"
@@ -38,7 +38,7 @@ The easiest way to handle this is to use the environment variable that Nixpkgs
 looks at.
 
 ```
- action "samueldr/action-nix-build@master" {
+action "samueldr/action-nix-build@master" {
   uses = "samueldr/action-nix-build@master"
   env = {
     NIXPKGS_ALLOW_UNFREE = "1"
