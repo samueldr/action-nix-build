@@ -11,5 +11,6 @@ LABEL com.github.actions.color="blue"
 ENV NIX_PATH nixpkgs=channel:nixos-unstable
 
 COPY "entrypoint.sh" "/entrypoint.sh"
+COPY "copy-from-store.sh" "/copy-from-store.sh"
 
 ENTRYPOINT ["/entrypoint.sh"]
