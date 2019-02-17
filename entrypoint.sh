@@ -2,9 +2,12 @@
 
 set -e
 
+mkdir -p /github/home/nix
+mkdir -p /github/home/.workdir
+
 # Ensures the nix store is kept between runs of nix-aware helpers.
 mount -t overlay overlay \
-	-olowerdir=/nix/,upperdir=/github/_nix,workdir=/github/_workdir \
+	-olowerdir=/nix/,upperdir=/github/home/nix,workdir=/github/home/.workdir \
 	/nix/
 
 if [ $# -gt 0 ]; then

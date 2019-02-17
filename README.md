@@ -31,7 +31,7 @@ nix store and store in the `/github/_nix` Workflow-persistent location.
 
 ```
 mount -t overlay overlay \
-	-olowerdir=/nix/,upperdir=/github/_nix,workdir=/github/_workdir \
+	-olowerdir=/nix/,upperdir=/github/home/_nix,workdir=/github/home/.workdir \
 	/nix/
 ```
 
