@@ -21,19 +21,7 @@ The results from running `nix-build [release|default].nix` will be
 automatically resolved from their symlinks and copied in place in a non-
 recursive manner.
 
-This means that `release.nix` is expected to not keep reference to the store if
-the result is to be used in a non Nix store aware Action.
-
-### Nix store awareness
-
-Simply put, a nix store aware Action will know to mount an overlayfs over the
-nix store and store in the `/github/_nix` Workflow-persistent location.
-
-```
-mount -t overlay overlay \
-	-olowerdir=/nix/,upperdir=/github/home/_nix,workdir=/github/home/.workdir \
-	/nix/
-```
+This means that `release.nix` is expected to not keep reference to the store.
 
 
 Environment
