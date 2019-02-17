@@ -1,15 +1,17 @@
 #!/bin/sh
 
+set -e
+
 if [ $# -gt 0 ]; then
-	exec nix-build "$@"
-fi
-
-# Defaults to building whatever `release.nix` is.
-if [ -e release.nix ]; then
-	exec nix-build ./release.nix
+	"$@"
+elif [ -e release.nix ]; then
+	nix-build ./release.nix
 elif [ -e default.nix ]; then
-	exec nix-build ./default.nix
+	nix-build ./default.nix
+else
+	echo "Nothing to build, either add release.nix or default.nix at the root, or give arguments to nix-build."
+	exit 1
 fi
 
-echo "Nothing to build, either add release.nix or default.nix at the root, or give arguments to nix-build."
-exit 1
+# As this is `busybox find` it `-lname /nix/*` cannot be used.
+find . -type l -exec '/copy-from-store.sh' '{}' ';'

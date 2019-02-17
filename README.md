@@ -6,9 +6,23 @@ This GitHub Action will run `nix-build`, using the latest
 
 It will build one of, in order or preference:
 
- * `nix-build "$@"` if arguments are set
+ * `"$@"` if arguments are set
  * `nix-build release.nix` if release.nix exists
- * `nix-build release.nix` if default.nix exists
+ * `nix-build default.nix` if default.nix exists
+
+
+`/nix/store`
+------------
+
+Given that this executes in a single-use Docker container, the Nix store is not
+persistent, and will be lost once the action is over.
+
+The results from running `nix-build [release|default].nix` will be
+automatically resolved from their symlinks and copied in place in a non-
+recursive manner.
+
+This means that `release.nix` is expected to not keep reference to the store.
+
 
 Environment
 -----------
