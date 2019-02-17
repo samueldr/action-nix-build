@@ -17,4 +17,4 @@ else
 fi
 
 # As this is `busybox find` it `-lname /nix/*` cannot be used.
-find . -type l -exec '/copy-from-store.sh' '-f' '{}' ';'
+find . -type l -exec '/copy-from-store.sh' '{}' ';'
