@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 # Ensures the nix store is kept between runs of nix-aware helpers.
 mount -t overlay overlay \
 	-olowerdir=/nix/,upperdir=/github/_nix,workdir=/github/_workdir \
