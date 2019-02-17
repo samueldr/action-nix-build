@@ -1,5 +1,10 @@
 #!/bin/sh
 
+# Ensures the nix store is kept between runs of nix-aware helpers.
+mount -t overlay overlay \
+	-olowerdir=/nix/,upperdir=/github/_nix,workdir=/github/_workdir \
+	/nix/
+
 if [ $# -gt 0 ]; then
 	"$@"
 elif [ -e release.nix ]; then
